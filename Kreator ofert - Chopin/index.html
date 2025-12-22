@@ -774,14 +774,14 @@ const packages = [
     ],
   },
   {
-    typ: 'Internet i Telewizja',
+    typ: 'Telewizja',
     nazwa: 'Dla Dwojga Święta - Canal+ Seriale i Filmy',
     cena: 20.00,
     cenaAktywacji: 1.23,
     dlugoscUmowy: 24,
   },
   {
-    typ: 'Internet i Telewizja',
+    typ: 'Telewizja',
     nazwa: 'Dla Dwojga Święta - Canal+ Super Sport',
     cena: 48.00,
     cenaAktywacji: 1.23,
@@ -1080,6 +1080,64 @@ const packages = [
     cena: 10.00,
     cenaAktywacji: 1.23,
     dlugoscUmowy: 24,
+  },
+
+// Internet i Telewizja - Blue Box TV, Internet + SMART TV 12/25 6x0
+  {
+    typ: 'Internet i Telewizja',
+    nazwa: 'Blue Box - 300/15 Mb/s',
+    cena: 26.13,
+    cenaAktywacji: 1.23,
+    dlugoscUmowy: 24,
+    urzadzenia: [
+      { nazwa: 'Modem', cena: 4.99, promocja: { cena: 0.00, czasTrwania: 6 } },
+    ],
+    promocja: { cena: 0.00, czasTrwania: 6 }
+  },
+  {
+    typ: 'Internet i Telewizja',
+    nazwa: 'Blue Box - 650/30 Mb/s',
+    cena: 36.13,
+    cenaAktywacji: 1.23,
+    dlugoscUmowy: 24,
+    urzadzenia: [
+      { nazwa: 'Modem', cena: 4.99, promocja: { cena: 0.00, czasTrwania: 6 } },
+    ],
+    promocja: { cena: 0.00, czasTrwania: 6 }
+  },
+  {
+    typ: 'Internet i Telewizja',
+    nazwa: 'Blue Box - 800/40 Mb/s',
+    cena: 46.13,
+    cenaAktywacji: 1.23,
+    dlugoscUmowy: 24,
+    urzadzenia: [
+      { nazwa: 'Modem', cena: 4.99, promocja: { cena: 0.00, czasTrwania: 6 } },
+    ],
+    promocja: { cena: 0.00, czasTrwania: 6 }
+  },
+  {
+    typ: 'Internet i Telewizja',
+    nazwa: 'Blue Box - 55 kanałów TV',
+    cena: 35.00,
+    cenaAktywacji: 1.23,
+    dlugoscUmowy: 24,
+    urzadzenia: [
+      { nazwa: 'Dekoder', cena: 0.00, promocja: { cena: 0.00, czasTrwania: 6 } },
+    ],
+    promocja: { cena: 0.00, czasTrwania: 6 }
+  },
+  {
+    typ: 'Internet i Telewizja',
+    nazwa: 'Blue Box - SMART TV',
+    cena: 4.99,
+    cenaAktywacji: 1.23,
+    dlugoscUmowy: 24,
+    urzadzenia: [
+      { nazwa: 'Dekoder Smart TV', cena: 14.99, promocja: { cena: 0.00, czasTrwania: 6 } },
+      { nazwa: 'Dostęp do usług nieliniowych SMART TV', cena: 5.00, promocja: { cena: 0.00, czasTrwania: 6 } },
+    ],
+    promocja: { cena: 0.00, czasTrwania: 6 }
   },
 
 // Internet i Telewizja - Super Box + SMART TV 09/25
@@ -2037,6 +2095,11 @@ function generateOffer() {
   if (hasBlackWeekOrKontynuacja) {
     if (hasPromotion) sumaCenaPromocyjna -= 3.69;
   }
+
+  const hasBlueBox = selectedPackages.some(pkg =>
+    pkg.nazwa.includes("Blue Box")
+  );
+  if (hasBlueBox) sumaCenaPromocyjna -= 13.88;
 
   const sumaZStala = sumaCena + additionalFee;
   const sumaPromocyjnaZStala = sumaCenaPromocyjna + additionalFee;
